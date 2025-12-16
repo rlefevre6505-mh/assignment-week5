@@ -49,6 +49,7 @@ function handleEaterySubmit(event) {
   });
   form.reset();
 }
+// const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
 
 const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
 
@@ -64,16 +65,46 @@ async function getRestaurantData() {
   return restaurantData;
 }
 
-const restaurantData = await getRestaurantData();
-console.log(restaurantData);
+// L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+//   maxZoom: 19,
+//   attribution:
+//     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+// }).addTo(map);
 
-async function renderMarkers() {
-  const resData = await getRestaurantData();
-  createMapMarkers(resData);
-}
+// async function getRestaurantData() {
+//   const response = await fetch("http://localhost:8080/eateries");
+//   const restaurantData = await response.json();
+//   return restaurantData;
+// }
 
-renderMarkers();
+// const restaurantData = await getRestaurantData();
+// console.log(restaurantData);
 
+// async function renderMarkers() {
+//   const resData = await getRestaurantData();
+//   createMapMarkers(resData);
+// }
+
+// renderMarkers();
+
+// function createMapMarkers(data) {
+//   for (let i = 0; i < data.length; i++) {
+//     let markerCoords = [data[i].location_lat, data[i].location_long];
+//     let mapMarkers = L.marker(markerCoords).addTo(map);
+//   }
+// }
+
+//Modal Button
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("myModal");
+  const closeButton = document.getElementById("closeModal");
+
+  modal.showModal();
+
+  closeButton.addEventListener("click", () => {
+    modal.close();
+  });
 function createMapMarkers(data) {
   for (let i = 0; i < data.length; i++) {
     let mapMarkers = L.marker([

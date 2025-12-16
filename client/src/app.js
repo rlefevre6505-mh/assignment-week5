@@ -51,20 +51,21 @@ function handleEaterySubmit(event) {
 }
 // const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
 
-const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
-
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  attribution:
-    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-}).addTo(map);
-
 //commented out due to duplication
 // async function getRestaurantData() {
 //   const response = await fetch("http://localhost:8080/eateries");
 //   const restaurantData = await response.json();
 //   return restaurantData;
 // }
+
+// commented out due to duplication
+// L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+//   maxZoom: 19,
+//   attribution:
+//     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+// }).addTo(map);
+
+const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
@@ -88,6 +89,18 @@ async function renderMarkers() {
 
 renderMarkers();
 
+function createMapMarkers(data) {
+  for (let i = 0; i < data.length; i++) {
+    let mapMarkers = L.marker([
+      data[i].location_lat,
+      data[i].location_long,
+    ]).addTo(map);
+    mapMarkers.bindPopup(
+      `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`
+    );
+  }
+}
+
 // removed due to duplication
 // function createMapMarkers(data) {
 //   for (let i = 0; i < data.length; i++) {
@@ -107,18 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
   closeButton.addEventListener("click", () => {
     modal.close();
   });
-
-  function createMapMarkers(data) {
-    for (let i = 0; i < data.length; i++) {
-      let mapMarkers = L.marker([
-        data[i].location_lat,
-        data[i].location_long,
-      ]).addTo(map);
-      mapMarkers.bindPopup(
-        `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`
-      );
-    }
-  }
 });
 
 // functions for side bar dropdown

@@ -105,17 +105,18 @@ document.addEventListener("DOMContentLoaded", () => {
   closeButton.addEventListener("click", () => {
     modal.close();
   });
-function createMapMarkers(data) {
-  for (let i = 0; i < data.length; i++) {
-    let mapMarkers = L.marker([
-      data[i].location_lat,
-      data[i].location_long,
-    ]).addTo(map);
-    mapMarkers.bindPopup(
-      `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`
-    );
+  function createMapMarkers(data) {
+    for (let i = 0; i < data.length; i++) {
+      let mapMarkers = L.marker([
+        data[i].location_lat,
+        data[i].location_long,
+      ]).addTo(map);
+      mapMarkers.bindPopup(
+        `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`
+      );
+    }
   }
-}
+});
 
 const dropdownDiv = document.getElementById("dropdown");
 const dropdownButton = document.getElementById("dropdown-button");

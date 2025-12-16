@@ -19,12 +19,29 @@
     <header>
 <img class="logo" src="/images/logo.jpg" alt="Diet Dine logo">
       <div class="header-items"><h1>Helping you dine</br><i>with confidence</i></h1>
-      <nav><a href="#################">How to use</a><a href="################">Submit a visit</a></nav></div>
+      <nav><a href="#################">How to use</a><a href="/submit">Submit a visit</a></nav></div>
     </header>
     <main>
       <div id="map"></div>
       <button class="dropdown-button"></button>
     </main>
+    <main><button class="dropdown-button"></button>
+    <h2>HOW TO COMPLETE FORM</h2>
+
+<form>     
+  <label for="date">When did you visit the eatery?</label>
+  <input name="date" id="date-setter" type="date" max="" required> </input>
+  <label for="accessible">Wheelchair accessible?</label>
+  <input type="checkbox" id="accessible" name="accessible" checked />
+  <label for="choices">Which dietary restrictions are catrered to?</label>
+  <select name="choices" id="choices" multiple required></select>
+  <option value="" disabled selected>Select all that apply</option>
+  <label for="comments">Which dietary restrictions are catrered to?</label>
+  <textarea name="comments" id="comments" maxlength="300" optional></textarea>
+  <button type="submit" id="submit-button">Submit</button>
+  </form>
+  
+  </main>
     <footer></footer>
   </body>
 </html>

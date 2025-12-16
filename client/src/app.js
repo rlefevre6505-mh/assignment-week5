@@ -70,3 +70,15 @@ function createMapMarkers(data) {
     let mapMarkers = L.marker(markerCoords).addTo(map);
   }
 }
+
+const dropdownDiv = document.getElementById("dropdown");
+const dropdownButton = document.getElementById("dropdown-button");
+const dropdownCloseButton = document.getElementById("dropdown-close-button");
+
+dropdownButton.addEventListener("click", function () {
+  document.getElementById("dropdown").style.width = "250px";
+});
+
+dropdownCloseButton.addEventListener("click", function () {
+  document.getElementById("dropdown").style.width = "0";
+});

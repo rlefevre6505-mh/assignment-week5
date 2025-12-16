@@ -65,28 +65,29 @@ async function getRestaurantData() {
   return restaurantData;
 }
 
-// L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-//   maxZoom: 19,
-//   attribution:
-//     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-// }).addTo(map);
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  attribution:
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map);
 
-// async function getRestaurantData() {
-//   const response = await fetch("http://localhost:8080/eateries");
-//   const restaurantData = await response.json();
-//   return restaurantData;
-// }
+async function getRestaurantData() {
+  const response = await fetch("http://localhost:8080/eateries");
+  const restaurantData = await response.json();
+  return restaurantData;
+}
 
-// const restaurantData = await getRestaurantData();
-// console.log(restaurantData);
+const restaurantData = await getRestaurantData();
+console.log(restaurantData);
 
-// async function renderMarkers() {
-//   const resData = await getRestaurantData();
-//   createMapMarkers(resData);
-// }
+async function renderMarkers() {
+  const resData = await getRestaurantData();
+  createMapMarkers(resData);
+}
 
-// renderMarkers();
+renderMarkers();
 
+// removed due to duplication
 // function createMapMarkers(data) {
 //   for (let i = 0; i < data.length; i++) {
 //     let markerCoords = [data[i].location_lat, data[i].location_long];
@@ -105,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
   closeButton.addEventListener("click", () => {
     modal.close();
   });
+
   function createMapMarkers(data) {
     for (let i = 0; i < data.length; i++) {
       let mapMarkers = L.marker([
@@ -118,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// functions for side bar dropdown
 const dropdownDiv = document.getElementById("dropdown");
 const dropdownButton = document.getElementById("dropdown-button");
 const dropdownCloseButton = document.getElementById("dropdown-close-button");

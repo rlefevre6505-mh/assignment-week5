@@ -1,18 +1,86 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* CSS COLOUR VARIABLES:
+/* CSS COLOUR VARIABLES: */
 
 :root {
-  --primary-bg-color: #1e90ff;
-  --primary-color: #ffffff;
+  --primary-color-dark: #386641;
+  --primary-color-medium: #6a994e;
+  --primary-color-light: #a7c957;
+  --neutral-color-white: rgb(240, 255, 255);
+  --secondary-color-medium: #ffc300;
+  --secondaty-color-light: #ffd60a;
 }
 
 .container {
   color: var(--primary-bg-color);
   background-color: var(--primary-color);
   padding: 15px;
-} */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 700px;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 2fr 8fr 1fr;
+}
+
+header {
+  grid-row: 1/2;
+  grid-column: 1/-1;
+  background-color: var(--neutral-color-white);
+  border: 3px solid var(--primary-color-dark);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header-items {
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 3fr 1fr;
+  gap: 1rem;
+}
+
+.logo {
+  height: 16vh;
+}
+
+h1 {
+  font-size: 1.8rem;
+  grid-row: 1/2;
+}
+
+nav {
+  grid-row: 2/3;
+  font-size: 0.8rem;
+  display: flex;
+  gap: 3rem;
+}
+
+main {
+  grid-row: 2/3;
+  grid-column: 1/-1;
+  background-color: var(--primary-color-medium);
+  border: 3px solid var(--primary-color-dark);
+  position: relative;
+}
+
+.dropdown-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("./images/logo.jpg");
+  height: 5vh;
+  width: 5vh;
+}
+
+footer {
+  grid-row: 3/4;
+  grid-column: 1/-1;
+  background-color: var(--neutral-color-white);
+  border: 3px solid var(--primary-color-dark);
+}

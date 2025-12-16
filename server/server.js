@@ -32,10 +32,11 @@ app.post("./new-eateries", async (req, res) => {
   const newEateries = req.body.formValues;
   console.log(newEateries);
   const query = await db.query(
-    `INSERT INTO eateries (name, location, address, weblink, gluten_free, dairy_free, vegetarian, vegan, pescatarian, allergy_friendly, wheelchair_accessible) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+    `INSERT INTO eateries (name, location_lat, location_long, address, weblink, gluten_free, dairy_free, vegetarian, vegan, pescatarian, allergy_friendly, wheelchair_accessible) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
     [
       newEateries.name,
-      newEateries.location,
+      newEateries.location_lat,
+      newEateries.location_long,
       newEateries.address,
       newEateries.weblink,
       newEateries.gluten_free,
@@ -52,7 +53,7 @@ app.post("./new-eateries", async (req, res) => {
 
 app.get("/eateries", async function (request, response) {
   const query = await db.query(
-    `SELECT name, location, address, weblink, gluten_free, dairy_free, vegetarian, vegan, pescatarian, allergy_friendly, wheelchair_accessible FROM eateries; `
+    `SELECT name, location_lat, location_long, address, weblink, gluten_free, dairy_free, vegetarian, vegan, pescatarian, allergy_friendly, wheelchair_accessible FROM eateries; `
   );
   console.log(query);
   response.json(query.rows);

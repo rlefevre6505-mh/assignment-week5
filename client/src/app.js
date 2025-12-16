@@ -47,3 +47,26 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
+
+async function getRestaurantData() {
+  const response = await fetch("http://localhost:8080/eateries");
+  const restaurantData = await response.json();
+  return restaurantData;
+}
+
+const restaurantData = await getRestaurantData();
+console.log(restaurantData);
+
+async function renderMarkers() {
+  const resData = await getRestaurantData();
+  createMapMarkers(resData);
+}
+
+renderMarkers();
+
+function createMapMarkers(data) {
+  for (let i = 0; i < data.length; i++) {
+    let markerCoords = [data[i].location_lat, data[i].location_long];
+    let mapMarkers = L.marker(markerCoords).addTo(map);
+  }
+}

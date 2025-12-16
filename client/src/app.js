@@ -59,11 +59,12 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
 
-async function getRestaurantData() {
-  const response = await fetch("http://localhost:8080/eateries");
-  const restaurantData = await response.json();
-  return restaurantData;
-}
+//commented out due to duplication
+// async function getRestaurantData() {
+//   const response = await fetch("http://localhost:8080/eateries");
+//   const restaurantData = await response.json();
+//   return restaurantData;
+// }
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,

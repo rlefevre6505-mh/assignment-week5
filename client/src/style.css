@@ -84,3 +84,8 @@ footer {
   background-color: var(--neutral-color-white);
   border: 3px solid var(--primary-color-dark);
 }
+
+#map {
+  height: 75vh;
+  width: 75%;
+}

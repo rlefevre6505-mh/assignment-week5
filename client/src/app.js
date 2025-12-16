@@ -7,7 +7,7 @@ console.log(form);
 
 async function DietReq() {
   const res = await fetch(
-    "https://diet-dine-server.onrender.com/dietary_requirements_submit" //change to render link once setup
+    "http://localhost:8080/dietary_requirements_submit" //change to render link once setup
   );
   const list = await res.json();
   console.log("Dietary Requirements:", list);
@@ -31,7 +31,7 @@ function handleEaterySubmit(event) {
   const formValues = Object.fromEntries(formDataTemplate);
   console.log(formValues);
 
-  fetch("https://diet-dine-server.onrender.com//new-eateries", {
+  fetch("http://localhost:8080/new-eateries", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -66,7 +66,12 @@ renderMarkers();
 
 function createMapMarkers(data) {
   for (let i = 0; i < data.length; i++) {
-    let markerCoords = [data[i].location_lat, data[i].location_long];
-    let mapMarkers = L.marker(markerCoords).addTo(map);
+    let mapMarkers = L.marker([
+      data[i].location_lat,
+      data[i].location_long,
+    ]).addTo(map);
+    mapMarkers.bindPopup(
+      `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`
+    );
   }
 }

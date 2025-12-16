@@ -69,6 +69,13 @@ main {
   position: relative;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 200px;
+}
+
 .dropdown-button {
   position: absolute;
   top: 0;

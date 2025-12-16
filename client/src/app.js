@@ -14,10 +14,19 @@ async function DietReq() {
 
   const dietList = document.getElementById("choices");
   list.forEach((choices) => {
-    const dietChoice = document.createElement("option");
-    dietChoice.value = choices.dietary_requirements;
-    dietChoice.textContent = choices.dietary_requirements;
-    dietList.appendChild(dietChoice);
+    const label = document.createElement("label");
+    label.style.display = "block"; //underneath each other - can be changed later if there are issues with CSS
+    label.textContent = choices.dietary_requirements;
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = choices.dietary_requirements;
+    checkbox.name = "dietary_requirements";
+
+    //to have checkbox before text
+    label.prepend(checkbox);
+
+    dietList.appendChild(label);
   });
 }
 
@@ -40,6 +49,7 @@ function handleEaterySubmit(event) {
   });
   form.reset();
 }
+
 const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {

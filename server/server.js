@@ -20,9 +20,10 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to the server. GET comfy!" });
 });
 
-app.get("/eateries", async (req, res) => {
-  const eateriesData = await db.query("SELECT * FROM eateries");
-  res.json({ eateriesData });
+// app.get("/eateries", async (req, res) => {
+//   const eateriesData = await db.query("SELECT * FROM eateries");
+//   res.json({ eateriesData });
+// });
 //==============================================Getting Data from the client==========================================
 
 //Post method to receive the data from the submit form

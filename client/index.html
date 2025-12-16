@@ -28,14 +28,15 @@
     <main><button class="dropdown-button"></button>
     <h2>HOW TO COMPLETE FORM</h2>
 
-<form>     
+<form id="form">     
   <label for="date">When did you visit the eatery?</label>
   <input name="date" id="date-setter" type="date" max="" required> </input>
   <label for="accessible">Wheelchair accessible?</label>
   <input type="checkbox" id="accessible" name="accessible" checked />
-  <label for="choices">Which dietary restrictions are catrered to?</label>
-  <select name="choices" id="choices" multiple required></select>
-  <option value="" disabled selected>Select all that apply</option>
+  <label for="choices">Which dietary restrictions are cartered to?</label>
+  <select name="choices" id="choices" multiple required>
+     <option value="" disabled selected>Select all that apply</option>
+  </select>
   <label for="comments">Which dietary restrictions are catrered to?</label>
   <textarea name="comments" id="comments" maxlength="300" optional></textarea>
   <button type="submit" id="submit-button">Submit</button>

@@ -7,7 +7,7 @@ console.log(form);
 
 async function DietReq() {
   const res = await fetch(
-    "http://localhost:8080/dietary_requirements_submit" //change to render link once setup
+    "https://diet-dine-server.onrender.com/dietary_requirements_submit" //change to render link once setup
   );
   const list = await res.json();
   console.log("Dietary Requirements:", list);
@@ -31,7 +31,7 @@ function handleEaterySubmit(event) {
   const formValues = Object.fromEntries(formDataTemplate);
   console.log(formValues);
 
-  fetch("http://localhost:8080/new-eateries", {
+  fetch("https://diet-dine-server.onrender.com//new-eateries", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

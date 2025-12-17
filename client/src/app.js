@@ -108,7 +108,9 @@ const getUserLocation = (position) => {
 
 navigator.geolocation.getCurrentPosition(getUserLocation);
 
-const map = L.map("map").setView(userCoordinates, 13);
+function createMap(userLocation) {
+  const map = L.map("map").setView(userCoordinates, 13);
+}
 
 //commented out due to duplication
 // async function getRestaurantData() {
@@ -209,3 +211,19 @@ popInCloseButton.addEventListener("click", function () {
 });
 
 //TO DO: add the filter function to the search form
+
+const filterForm = document.getElementById("filter");
+
+filterForm.addEventListener("change", async (event) => {
+  const selection = event.target.value; //target property, in this case which dietary requirement
+
+  const url = "https://diet-dine-server.onrender.com/dieteateries";
+  if (selection) {
+    url += `?${selection}=true`;
+  }
+
+  const result = await fetch(url); //requests the URL from above and waits for the server to reply
+  const list = await result.json(); //reads the response from the server and parses it to JSON, list holds the data it gets from the server
+
+  console.log("Filtered Eateries:", list); //displays results in console.log
+});

@@ -65,6 +65,26 @@ function handleEaterySubmit(event) {
 //     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 // }).addTo(map);
 
+// function getUserLocation() {
+//   const successCallback = (position) => {
+//     let userLatitude = position.coords.latitude;
+//     let userLongitude = position.coords.longitude;
+//     let coordinates = `[${userLatitude}, ${userLongitude}]`;
+//     return coordinates;
+//   };
+
+//   // const errorCallback = (error) => {
+//   //   console.error(error);
+//   // };
+
+//   navigator.geolocation.getCurrentPosition(successCallback);
+// }
+
+// const userCoordinates = getUserLocation(successCallback(coordinates));
+
+// console.log(userCoordinates);
+// // getUserLocation(userLatitude, userLongitude);
+
 const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {

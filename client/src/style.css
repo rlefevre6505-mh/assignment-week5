@@ -11,8 +11,8 @@
   --primary-color-medium: #6a994e;
   --primary-color-light: #a7c957;
   --neutral-color-white: rgb(240, 255, 255);
-  --secondary-color-medium: #ffc300;
-  --secondary-color-light: #ffe046;
+  --secondary-color-light: #ffe76d;
+  --secondary-color-extralight: #f0e5aa;
 }
 
 /* .container {
@@ -22,7 +22,7 @@
 } */
 
 body {
-  height: 100vh;
+  height: 98vh;
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 2fr 7fr 1fr;
@@ -32,24 +32,39 @@ body {
 #myModal {
   position: absolute;
   left: 10vw;
-  top: 25vw;
+  top: 25vh;
   width: 80vw;
-  height: 40vh;
+  min-height: 35vh;
+  max-height: 65vh;
   text-align: center;
-  background-color: rgb(13, 14, 13);
-  border: 5px solid var(--secondary-color-medium);
+  background-color: rgb(15, 18, 16);
+  border: 5px solid var(--secondary-color-light);
+  padding: 20px;
 }
 #myModal h2 {
   font-size: 3rem;
-  color: rgb(231, 59, 40);
+  color: var(--neutral-color-white);
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
 #myModal p {
   font-size: 1.2rem;
-  color: var(--secondary-color-light);
+  color: var(--secondary-color-extralight);
   margin-bottom: 20px;
+}
+
+#closeModal {
+  padding: 10px;
+  /* min-height:;
+  min-width: ; */
+  color: var(--secondary-color-light);
+  /* border: solid 3px var(--secondary-color-medium); */
+  background-color: var(--primary-color-dark);
+}
+
+#closeModal:hover {
+  cursor: pointer;
 }
 
 /* STYLING FOR HEADER SECTION */
@@ -59,32 +74,63 @@ header {
   background-color: var(--neutral-color-white);
   border: 3px solid var(--primary-color-dark);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 
 .header-items {
-  display: grid;
-  grid-template-columns: 1;
-  grid-template-rows: 3fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-items button {
+  z-index: 1;
+  height: fit-content;
+  width: fit-content;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: var(--secondary-color-light);
+  color: var(--primary-color-dark);
+  font-family: Tahoma, sans-serif;
+  font-weight: 800;
+  margin: 3px;
+  min-width: 100px;
+  min-height: 50px;
+}
+
+.header-items button:active {
+  background-color: var(--secondary-color-extralight);
+  color: var(--primary-color-light);
 }
 
 .logo {
-  height: 16vh;
+  height: 18vh;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
-  font-size: 1.8rem;
+  margin-top: 10px;
+  font-size: 6vh;
   grid-row: 1/2;
 }
 
-nav {
+p {
+  font-size: 6vh;
+}
+
+/* nav {
   grid-row: 2/3;
   font-size: 0.8rem;
   display: flex;
   gap: 3rem;
-}
+} */
 
 /* STYLING FOR MAIN SECTION */
 main {
@@ -93,6 +139,7 @@ main {
   background-color: var(--primary-color-medium);
   border: 3px solid var(--primary-color-dark);
   position: relative;
+  font-family: Tahoma, sans-serif;
 }
 
 #map {
@@ -105,15 +152,6 @@ main {
 }
 
 /* STYLING FOR FILTERS POP-IN */
-#dropdown-button {
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: fit-content;
-  width: fit-content;
-  padding: 5px;
-}
 
 .dropdown {
   z-index: 1;
@@ -168,15 +206,6 @@ option {
 }
 
 /* STYLING FOR FORM POP-IN */
-#popin-button {
-  z-index: 1;
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  height: fit-content;
-  width: fit-content;
-  padding: 5px;
-}
 
 .popin {
   grid-row: 2/3;
@@ -220,21 +249,22 @@ form {
 #popin-close-button:hover,
 #popin-button:hover,
 #dropdown-button:hover,
-#dropdown-close-button:hover {
+#dropdown-close-button:hover,
+a {
   cursor: pointer;
 }
 
 .popin h2 {
   margin-top: 40px;
   color: var(--neutral-color-white);
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: Tahoma, sans-serif;
   font-size: 1rem;
   font-weight: 300;
 }
 
 #form {
   color: var(--neutral-color-white);
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: Tahoma, sans-serif;
   font-size: 0.8rem;
   font-weight: 200;
   width: 100%;
@@ -246,4 +276,54 @@ footer {
   grid-column: 1/-1;
   background-color: var(--neutral-color-white);
   border: 3px solid var(--primary-color-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: Tahoma, sans-serif;
+}
+
+footer h3 {
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+.footer-links {
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+a {
+  color: var(--primary-color-medium);
+}
+
+a:active {
+  color: var(--primary-color-light);
+}
+
+@media (width > 1100px) {
+  .header-text {
+    display: flex;
+    flex-direction: row;
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+  }
+  header p {
+    margin-top: 10px;
+    margin-left: 15px;
+  }
+}
+
+@media (width < 600px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  header p {
+    font-size: 1.2rem;
+  }
 }

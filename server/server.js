@@ -68,3 +68,19 @@ app.get("/dietary_requirements_submit", async (req, res) => {
   console.log(query.rows);
   res.json(query.rows);
 });
+
+//Functions to go for filter
+
+app.get("/dietaryeateries", async (req, res) => {
+  let query = "SELECT * FROM eateries";
+
+  if (req.query.vegan === "true") {
+    query += " WHERE vegan = true";
+  }
+
+  const result = await db.query(query);
+
+  console.log("req.query:", req.query);
+
+  res.json(result.rows);
+});

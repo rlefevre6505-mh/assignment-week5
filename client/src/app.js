@@ -77,7 +77,7 @@ filterReq();
 //Function to send data submitted in form to database
 
 function handleEaterySubmit(event) {
-  event.preventDEfault();
+  event.preventDefault();
   const formDataTemplate = new FormData(form);
   const formValues = Object.fromEntries(formDataTemplate);
   console.log(formValues);

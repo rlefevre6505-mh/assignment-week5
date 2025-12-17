@@ -53,14 +53,16 @@
           <label for="address">Address</label>
   <textarea name="address" id="address" maxlength="600" ></textarea>
 
-<!-- TODO: add verification to webaddress, possibly othersx -->
+<!-- TODO: add verification to webaddress, possibly others -->
           <label for="website">Website</label>
-  <input name="website" id="website" maxlength="300" required></textarea>
+  <input type="url" name="website" id="website" maxlength="300" required></textarea>
 
   <label for="date_visited">When did you visit the eatery?</label>
   <input name="date_visited" id="date-setter" type="date" max="" required> </input>
+  <div class="accessible">
   <label for="wheelchair_accessible">Was the location wheelchair accessible?</label>
-  <input type="checkbox" name="wheelchair_accessible" id="accessible" checked />
+  <input type="checkbox" name="wheelchair_accessible" id="accessible" class="tickbox" />
+  </div>
   <label for="choices">Which dietary restrictions are catered to?</label>
   <div id="choices"></div>
   <label for="comments">Any other comments</label>

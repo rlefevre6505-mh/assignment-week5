@@ -35,6 +35,7 @@ async function DietReq() {
     checkbox.type = "checkbox";
     checkbox.value = choices.dietary_requirements;
     checkbox.name = "dietary_requirements";
+    checkbox.classList.add("tickbox");
 
     //to have checkbox before text
     label.prepend(checkbox);
@@ -186,13 +187,9 @@ const dropdownButton = document.getElementById("dropdown-button");
 const dropdownCloseButton = document.getElementById("dropdown-close-button");
 
 dropdownButton.addEventListener("click", function () {
-  // if (
-  //   document.getElementById("popin").style.width != "0" ||
-  //   document.getElementById("dropdown").style.width != "0"
-  // ) {
-  //   document.getElementById("popin").style.width = "0";
-  //   document.getElementById("dropdown").style.width = "0";
-  // }
+  if (document.getElementById("popin").style.width != "0") {
+    document.getElementById("popin").style.width = "0";
+  }
 
   document.getElementById("dropdown").style.width = "90vw";
 });
@@ -207,13 +204,9 @@ const popInButton = document.getElementById("popin-button");
 const popInCloseButton = document.getElementById("popin-close-button");
 
 popInButton.addEventListener("click", function () {
-  // if (
-  //   document.getElementById("popin").style.width != "0" ||
-  //   document.getElementById("dropdown").style.width != "0"
-  // ) {
-  //   document.getElementById("popin").style.width = "0";
-  //   document.getElementById("dropdown").style.width = "0";
-  // }
+  if (document.getElementById("dropdown").style.width != "0") {
+    document.getElementById("dropdown").style.width = "0";
+  }
 
   document.getElementById("popin").style.width = "90vw";
 });
@@ -221,6 +214,16 @@ popInButton.addEventListener("click", function () {
 popInCloseButton.addEventListener("click", function () {
   document.getElementById("popin").style.width = "0";
 });
+
+//code for date fomr validation - cannot add future dates
+const today = new Date();
+let day = today.getDate();
+let nextDay = today.getDate() + 1;
+let month = today.getMonth() + 1;
+let year = today.getFullYear();
+let currentDate = `${year}-${month}-${day}`;
+const dateSetter = document.getElementById("date-setter");
+dateSetter.setAttribute("max", currentDate);
 
 //TO DO: add the filter function to the search form
 

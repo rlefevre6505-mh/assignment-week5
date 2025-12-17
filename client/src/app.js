@@ -186,6 +186,14 @@ const dropdownButton = document.getElementById("dropdown-button");
 const dropdownCloseButton = document.getElementById("dropdown-close-button");
 
 dropdownButton.addEventListener("click", function () {
+  // if (
+  //   document.getElementById("popin").style.width != "0" ||
+  //   document.getElementById("dropdown").style.width != "0"
+  // ) {
+  //   document.getElementById("popin").style.width = "0";
+  //   document.getElementById("dropdown").style.width = "0";
+  // }
+
   document.getElementById("dropdown").style.width = "90vw";
 });
 
@@ -199,6 +207,14 @@ const popInButton = document.getElementById("popin-button");
 const popInCloseButton = document.getElementById("popin-close-button");
 
 popInButton.addEventListener("click", function () {
+  // if (
+  //   document.getElementById("popin").style.width != "0" ||
+  //   document.getElementById("dropdown").style.width != "0"
+  // ) {
+  //   document.getElementById("popin").style.width = "0";
+  //   document.getElementById("dropdown").style.width = "0";
+  // }
+
   document.getElementById("popin").style.width = "90vw";
 });
 

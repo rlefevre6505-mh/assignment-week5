@@ -61,7 +61,9 @@ async function filterReq() {
 
     const option = document.createElement("option");
     option.type = "option";
-    option.value = choices.dietary_requirements;
+
+    const key = choices.dietary_requirements.toLowerCase().replaceAll(" ", "_"); //small change to value as it pulls them as upper case and without dashes from the supabase table. So set a const that changes them in the loop to match with server setup.
+    option.value = key;
     option.textContent = choices.dietary_requirements;
     // option.name = "dietary_requirements";
 
@@ -211,7 +213,7 @@ const filterForm = document.getElementById("filter");
 filterForm.addEventListener("change", async (event) => {
   const selection = event.target.value; //target property, in this case which dietary requirement
 
-  const url = "https://diet-dine-server.onrender.com/dieteateries";
+  let url = "https://diet-dine-server.onrender.com/dieteateries";
   if (selection) {
     url += `?${selection}=true`;
   }

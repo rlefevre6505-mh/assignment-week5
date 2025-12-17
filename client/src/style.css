@@ -261,15 +261,25 @@ option:active {
 form {
   display: flex;
   flex-direction: column;
-  max-width: 80%;
-  display: flex;
-
+  max-width: 70vw;
   margin-left: 10px;
   color: var(--neutral-color-white);
   font-family: Tahoma, sans-serif;
   font-size: 0.8rem;
   font-weight: 200;
-  width: 100%;
+}
+
+.accessible {
+  display: flex;
+}
+
+.tickbox {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+label {
+  margin-left: 20px;
 }
 
 textarea,
@@ -293,6 +303,7 @@ a {
 .popin h2 {
   margin-left: 10px;
   margin-top: 15px;
+  margin-right: 20px;
   color: var(--secondary-color-extralight);
   font-family: Tahoma, sans-serif;
   font-size: 0.8rem;
@@ -352,6 +363,9 @@ a:active {
   header p {
     margin-top: 10px;
     margin-left: 15px;
+  }
+  .popin {
+    max-width: 60vw;
   }
 }
 

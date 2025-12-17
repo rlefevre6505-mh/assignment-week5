@@ -158,11 +158,11 @@ main {
   grid-row: 2/3;
   height: 70%;
   width: 0;
-  max-width: 300px;
+  max-width: 380px;
   position: fixed;
   z-index: 3;
   left: 0;
-  background-color: #111111cb;
+  background-color: rgba(6, 15, 11, 0.95);
   overflow-x: hidden;
   /* padding-top: 60px; */
   transition: 0.5s;
@@ -180,20 +180,39 @@ main {
 
 label {
   color: var(--secondary-color-medium);
-  margin-top: 30px;
+  margin-top: 5px;
   margin-left: 10px;
 }
 
-select,
-option {
+select {
   min-width: 40%;
-  max-width: 60%;
+  max-width: 50%;
   margin-top: 10px;
   margin-left: 10px;
 }
 
+#dropdown h2 {
+  margin-left: 10px;
+  margin-top: 15px;
+  margin-bottom: 15x;
+  color: var(--secondary-color-extralight);
+  font-family: Tahoma, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+select {
+  background-color: var(--secondary-color-extralight);
+  color: var(--primary-color-dark);
+}
+
 option {
-  max-width: 100%;
+  font-size: 1rem;
+  font-family: Tahoma, sans-serif;
+}
+
+option:active {
+  background-color: var(--secondary-color-light);
 }
 
 #dropdown-close-button {
@@ -202,7 +221,7 @@ option {
   right: 15px;
   font-size: 36px;
   /* margin-left: 50px; */
-  color: var(--secondary-color-medium);
+  color: var(--secondary-color-extralight);
 }
 
 /* STYLING FOR FORM POP-IN */
@@ -211,15 +230,15 @@ option {
   grid-row: 2/3;
   height: 70%;
   width: 0;
-  max-width: 300px;
   position: fixed;
   z-index: 3;
   left: 0;
-  background-color: #111111cb;
-  overflow-x: hidden;
-  /* padding-top: 60px; */
+  background-color: rgba(6, 15, 11, 0.95);
+  overflow: auto;
   transition: 0.5s;
-  border-radius: 10px;
+  border-radius: 3px;
+  font-family: Tahoma, sans-serif;
+  font-size: 1rem;
 }
 
 /* popin > .checkbox {
@@ -233,17 +252,34 @@ option {
 #popin-close-button {
   position: absolute;
   top: 5px;
-  right: 15px;
+  right: 5px;
   font-size: 36px;
   /* margin-left: 50px; */
-  color: var(--secondary-color-medium);
+  color: var(--secondary-color-extralight);
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   max-width: 80%;
+  display: flex;
+
+  margin-left: 10px;
+  color: var(--neutral-color-white);
+  font-family: Tahoma, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 200;
+  width: 100%;
+}
+
+textarea,
+input {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+form button {
+  margin-bottom: 20px;
 }
 
 #popin-close-button:hover,
@@ -255,19 +291,12 @@ a {
 }
 
 .popin h2 {
-  margin-top: 40px;
-  color: var(--neutral-color-white);
-  font-family: Tahoma, sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-}
-
-#form {
-  color: var(--neutral-color-white);
+  margin-left: 10px;
+  margin-top: 15px;
+  color: var(--secondary-color-extralight);
   font-family: Tahoma, sans-serif;
   font-size: 0.8rem;
-  font-weight: 200;
-  width: 100%;
+  font-weight: 300;
 }
 
 /* FOOTER STYLING  */
@@ -302,6 +331,13 @@ a {
 a:active {
   color: var(--primary-color-light);
 }
+
+/* @media (width < 600px) {
+  .popin {
+    width: 0;
+    max-width: 100vw;
+  }
+} */
 
 @media (width > 1100px) {
   .header-text {

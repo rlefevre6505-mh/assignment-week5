@@ -91,7 +91,21 @@ function handleEaterySubmit(event) {
   });
   form.reset();
 }
-// const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
+
+const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
+
+// const getUserLocation = async (position) => {
+//   const userLat = position.coords.latitude;
+//   const userLong = position.coords.longitude;
+//   console.log(position);
+//   const userCoordinates = [userLat, userLong];
+//   return userCoordinates;
+// };
+
+// navigator.geolocation.getCurrentPosition(getUserLocation);
+
+// const userCoords = await getUserLocation(GeolocationPosition);
+// console.log(userCoords);
 
 //commented out due to duplication
 // async function getRestaurantData() {
@@ -106,28 +120,6 @@ function handleEaterySubmit(event) {
 //   attribution:
 //     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 // }).addTo(map);
-
-// function getUserLocation() {
-//   const successCallback = (position) => {
-//     let userLatitude = position.coords.latitude;
-//     let userLongitude = position.coords.longitude;
-//     let coordinates = `[${userLatitude}, ${userLongitude}]`;
-//     return coordinates;
-//   };
-
-//   // const errorCallback = (error) => {
-//   //   console.error(error);
-//   // };
-
-//   navigator.geolocation.getCurrentPosition(successCallback);
-// }
-
-// const userCoordinates = getUserLocation(successCallback(coordinates));
-
-// console.log(userCoordinates);
-// // getUserLocation(userLatitude, userLongitude);
-
-const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,

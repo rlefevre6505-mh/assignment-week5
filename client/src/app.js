@@ -193,7 +193,7 @@ const dropdownButton = document.getElementById("dropdown-button");
 const dropdownCloseButton = document.getElementById("dropdown-close-button");
 
 dropdownButton.addEventListener("click", function () {
-  document.getElementById("dropdown").style.width = "50vw";
+  document.getElementById("dropdown").style.width = "90vw";
 });
 
 dropdownCloseButton.addEventListener("click", function () {
@@ -206,7 +206,7 @@ const popInButton = document.getElementById("popin-button");
 const popInCloseButton = document.getElementById("popin-close-button");
 
 popInButton.addEventListener("click", function () {
-  document.getElementById("popin").style.width = "50vw";
+  document.getElementById("popin").style.width = "90vw";
 });
 
 popInCloseButton.addEventListener("click", function () {

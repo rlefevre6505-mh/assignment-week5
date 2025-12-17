@@ -1,5 +1,18 @@
 console.log("Hello World");
 
+//Modal Button
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("myModal");
+  const closeButton = document.getElementById("closeModal");
+
+  modal.showModal();
+
+  closeButton.addEventListener("click", () => {
+    modal.close();
+  });
+});
+
 const searchForm = document.getElementById("form");
 console.log(form);
 
@@ -7,7 +20,7 @@ console.log(form);
 
 async function DietReq() {
   const res = await fetch(
-    "http://localhost:8080/dietary_requirements_submit" //change to render link once setup
+    "https://diet-dine-server.onrender.com/dietary_requirements_submit" //change to render link once setup
   );
   const list = await res.json();
   console.log("Dietary Requirements:", list);
@@ -40,7 +53,7 @@ function handleEaterySubmit(event) {
   const formValues = Object.fromEntries(formDataTemplate);
   console.log(formValues);
 
-  fetch("http://localhost:8080/new-eateries", {
+  fetch("https://diet-dine-server.onrender.com/new-eateries", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -74,7 +87,9 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 async function getRestaurantData() {
-  const response = await fetch("http://localhost:8080/eateries");
+  const response = await fetch(
+    "https://diet-dine-server.onrender.com/eateries"
+  );
   const restaurantData = await response.json();
   return restaurantData;
 }
@@ -109,6 +124,7 @@ function createMapMarkers(data) {
 //   }
 // }
 
+// functions for side bar dropdown
 //Modal Button
 
 document.addEventListener("DOMContentLoaded", () => {

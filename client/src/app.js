@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const searchForm = document.getElementById("form");
 console.log(form);
 
-//create the function for the dietary requirements dropdown list
+//create the function for the dietary requirements form
 
 async function DietReq() {
   const res = await fetch(
@@ -44,6 +44,35 @@ async function DietReq() {
 }
 
 DietReq();
+
+//function to populate requirements into the  dropdown filter
+
+async function filterReq() {
+  const res = await fetch(
+    "http://localhost:8080/dietary_requirements_submit" //change to render link once setup
+  );
+  const list = await res.json();
+  // console.log("Dietary Requirements:", list);
+
+  const dietList = document.getElementById("filter");
+  list.forEach((choices) => {
+    // const label = document.createElement("label");
+    // label.style.display = "block"; //underneath each other - can be changed later if there are issues with CSS
+
+    const option = document.createElement("option");
+    option.type = "option";
+    option.value = choices.dietary_requirements;
+    option.textContent = choices.dietary_requirements;
+    // option.name = "dietary_requirements";
+
+    //to have checkbox before text
+    // label.prepend(checkbox);
+
+    dietList.appendChild(option);
+  });
+}
+
+filterReq();
 
 //Function to send data submitted in form to database
 
@@ -144,7 +173,7 @@ const dropdownButton = document.getElementById("dropdown-button");
 const dropdownCloseButton = document.getElementById("dropdown-close-button");
 
 dropdownButton.addEventListener("click", function () {
-  document.getElementById("dropdown").style.width = "40vw";
+  document.getElementById("dropdown").style.width = "50vw";
 });
 
 dropdownCloseButton.addEventListener("click", function () {
@@ -157,7 +186,7 @@ const popInButton = document.getElementById("popin-button");
 const popInCloseButton = document.getElementById("popin-close-button");
 
 popInButton.addEventListener("click", function () {
-  document.getElementById("popin").style.width = "60vw";
+  document.getElementById("popin").style.width = "50vw";
 });
 
 popInCloseButton.addEventListener("click", function () {

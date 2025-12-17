@@ -49,7 +49,7 @@ DietReq();
 
 async function filterReq() {
   const res = await fetch(
-    "http://localhost:8080/dietary_requirements_submit" //change to render link once setup
+    "https://diet-dine-server.onrender.com/dietary_requirements_submit" //change to render link once setup
   );
   const list = await res.json();
   // console.log("Dietary Requirements:", list);

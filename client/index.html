@@ -23,8 +23,8 @@
     </dialog>
     <header>
 <img class="logo" src="/images/logo.jpg" alt="Diet Dine logo">
-      <div class="header-items"><h1>Helping you dine</br><i>with confidence</i></h1>
-      <nav><a href="#################">How to use</a><a href="https://diet-dine-client.onrender.com/about">About</a></nav></div>
+      <div class="header-items"><h1>Helping you dine</br><i>with confidence</i></h1><nav>
+      <a href="https://diet-dine-client.onrender.com/about">About</a></nav></div>
     </header>
     <main>
 
@@ -41,8 +41,19 @@
 
         <button id="popin-button">Submit a</br>visit</button>
       <div id="popin" class="popin">  <a id="popin-close-button">&times;</a>    
-        <h2>HOW TO COMPLETE FORM: Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, quaerat. Fugit laboriosam iusto ab maiores.</h2>
+        <h2>BEFORE SUBMITTING YOUR RESTAURANT VISIT:</br>Please fill in all applicable details before clicking submit. Failure to complete all details will mean other users cannot see this information.</h2>
         <form id="form">     
+
+          <label for="name_of_restaurant">Name of restaurant</label>
+  <input name="name_of_restaurant" id="name_of_restaurant" maxlength="100" required></textarea>
+
+          <label for="address">Address</label>
+  <textarea name="address" id="address" maxlength="600" ></textarea>
+
+<!-- TODO: add verification to webaddress, possibly othersx -->
+          <label for="website">Website</label>
+  <input name="website" id="website" maxlength="300" required></textarea>
+
   <label for="date_visited">When did you visit the eatery?</label>
   <input name="date_visited" id="date-setter" type="date" max="" required> </input>
   <label for="wheelchair_accessible">Was the location wheelchair accessible?</label>

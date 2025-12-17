@@ -1,31 +1,55 @@
-/* CSS COLOUR VARIABLES: */
-
-:root {
-  --primary-color-dark: #386641;
-  --primary-color-medium: #6a994e;
-  --primary-color-light: #a7c957;
-  --neutral-color-white: rgb(240, 255, 255);
-  --secondary-color-medium: #ffc300;
-  --secondaty-color-light: #ffd60a;
-}
-
-.container {
-  color: var(--primary-bg-color);
-  background-color: var(--primary-color);
-  padding: 15px;
-}
-
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* CSS COLOUR VARIABLES: */
+:root {
+  --primary-color-dark: #386641;
+  --primary-color-medium: #6a994e;
+  --primary-color-light: #a7c957;
+  --neutral-color-white: rgb(240, 255, 255);
+  --secondary-color-medium: #ffc300;
+  --secondary-color-light: #ffe046;
+}
+
+/* .container {
+  color: var(--primary-bg-color);
+  background-color: var(--primary-color);
+  padding: 15px;
+} */
+
 body {
   height: 100vh;
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 2fr 7fr 1fr;
+}
+
+/* styling for duisclaimer */
+#myModal {
+  position: absolute;
+  left: 10vw;
+  top: 25vw;
+  width: 80vw;
+  height: 40vh;
+  text-align: center;
+  background-color: rgb(13, 14, 13);
+  border: 5px solid var(--secondary-color-medium);
+}
+#myModal h2 {
+  font-size: 3rem;
+  color: rgb(231, 59, 40);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#myModal p {
+  font-size: 1.2rem;
+  color: var(--secondary-color-light);
+  margin-bottom: 20px;
 }
 
 /* STYLING FOR HEADER SECTION */
@@ -63,7 +87,6 @@ nav {
 }
 
 /* STYLING FOR MAIN SECTION */
-
 main {
   grid-row: 2/3;
   grid-column: 1/-1;
@@ -97,6 +120,7 @@ main {
   grid-row: 2/3;
   height: 70%;
   width: 0;
+  max-width: 300px;
   position: fixed;
   z-index: 3;
   left: 0;
@@ -110,6 +134,7 @@ main {
 }
 
 .dropdown > h2 {
+  color: var(--neutral-color-white);
   margin-top: 30px;
   margin-right: 10px;
   margin-left: 10px;
@@ -157,6 +182,7 @@ option {
   grid-row: 2/3;
   height: 70%;
   width: 0;
+  max-width: 300px;
   position: fixed;
   z-index: 3;
   left: 0;
@@ -198,7 +224,8 @@ form {
   cursor: pointer;
 }
 
-h2 {
+.popin h2 {
+  margin-top: 40px;
   color: var(--neutral-color-white);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 1rem;

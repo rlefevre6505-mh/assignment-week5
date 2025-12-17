@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
 //Post method to receive the data from the submit form
 
-app.post("./new-eateries", async (req, res) => {
+app.post("/new-eateries", async (req, res) => {
   const newEateries = req.body.formValues;
   console.log(newEateries);
   const query = await db.query(

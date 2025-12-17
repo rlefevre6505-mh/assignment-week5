@@ -92,20 +92,23 @@ function handleEaterySubmit(event) {
   form.reset();
 }
 
-const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
+const getUserLocation = (position) => {
+  // console.log(position.coords.latitude);
+  const userLat = position.coords.latitude;
+  // console.log(position.coords.longitude);
+  const userLong = position.coords.longitude;
+  const userCoordinates = [userLat, userLong];
+  // console.log(userCoordinates);
+  return userCoordinates;
+};
 
-// const getUserLocation = async (position) => {
-//   const userLat = position.coords.latitude;
-//   const userLong = position.coords.longitude;
-//   console.log(position);
-//   const userCoordinates = [userLat, userLong];
-//   return userCoordinates;
-// };
+// getUserLocation();
 
-// navigator.geolocation.getCurrentPosition(getUserLocation);
+// console.log(userCoordinates);
 
-// const userCoords = await getUserLocation(GeolocationPosition);
-// console.log(userCoords);
+navigator.geolocation.getCurrentPosition(getUserLocation);
+
+const map = L.map("map").setView(userCoordinates, 13);
 
 //commented out due to duplication
 // async function getRestaurantData() {

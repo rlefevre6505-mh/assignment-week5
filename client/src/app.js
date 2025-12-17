@@ -207,3 +207,5 @@ popInButton.addEventListener("click", function () {
 popInCloseButton.addEventListener("click", function () {
   document.getElementById("popin").style.width = "0";
 });
+
+//TO DO: add the filter function to the search form

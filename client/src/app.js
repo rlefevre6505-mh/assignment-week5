@@ -122,15 +122,28 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// functions for side bar dropdown
+// functions for filter side bar
 const dropdownDiv = document.getElementById("dropdown");
 const dropdownButton = document.getElementById("dropdown-button");
 const dropdownCloseButton = document.getElementById("dropdown-close-button");
 
 dropdownButton.addEventListener("click", function () {
-  document.getElementById("dropdown").style.width = "250px";
+  document.getElementById("dropdown").style.width = "40vw";
 });
 
 dropdownCloseButton.addEventListener("click", function () {
   document.getElementById("dropdown").style.width = "0";
+});
+
+// functions for form side bar
+const popInDiv = document.getElementById("popin");
+const popInButton = document.getElementById("popin-button");
+const popInCloseButton = document.getElementById("popin-close-button");
+
+popInButton.addEventListener("click", function () {
+  document.getElementById("popin").style.width = "60vw";
+});
+
+popInCloseButton.addEventListener("click", function () {
+  document.getElementById("popin").style.width = "0";
 });

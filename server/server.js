@@ -72,16 +72,42 @@ app.get("/dietary_requirements_submit", async (req, res) => {
 
 //Functions to go for filter
 
-app.get("/dietaryeateries", async (req, res) => {
+// app.get("/dietaryeateries", async (req, res) => {
+//   let query = "SELECT * FROM eateries";
+
+//   if (req.query.vegan === "true") {
+//     query += " WHERE vegan = true";
+//   }
+
+//   const result = await db.query(query);
+
+//   console.log("req.query:", req.query);
+
+//   res.json(result.rows);
+// });
+
+//TO DO: add option to have multiple filters
+
+app.get("/dieteateries", async (req, res) => {
   let query = "SELECT * FROM eateries";
+  const condition = []; //empty array to collect all the filters + push condition: https://www.w3schools.com/jsref/jsref_push.asp
 
-  if (req.query.vegan === "true") {
-    query += " WHERE vegan = true";
+  if (req.query.vegan === "true") condition.push("vegan = true");
+  if (req.query.gluten_free === "true") condition.push("gluten_free = true");
+  if (req.query.dairy_free === "true") condition.push("dairy_free = true");
+  if (req.query.vegetarian === "true") condition.push("vegetarian = true");
+  if (req.query.pescatarian === "true") condition.push("pescatarian = true");
+  if (req.query.allergy_friendly === "true")
+    condition.push("allergy_friendly = true");
+  if (req.query.wheelchair_accessible === "true")
+    condition.push("wheelchair_accessible = true"); //if any of these conditions are true this will fill the empty array
+  if (condition.length > 0) {
+    query += ` WHERE ` + condition.join(` AND `); //if more than one filter has been selected, this will join them, otherwise all eateries will be displayed
   }
-
+  console.log("SQL:", query);
   const result = await db.query(query);
-
-  console.log("req.query:", req.query);
-
+  console.log(result.rows);
   res.json(result.rows);
 });
+
+//to test use this example: http://localhost:8080/dieteateries?gluten_free=true&vegan=false

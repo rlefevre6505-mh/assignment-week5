@@ -93,23 +93,23 @@ searchForm.addEventListener("submit", function handleEaterySubmit(event) {
 });
 
 const getUserLocation = (position) => {
-  // console.log(position.coords.latitude);
   const userLat = position.coords.latitude;
-  // console.log(position.coords.longitude);
   const userLong = position.coords.longitude;
   const userCoordinates = [userLat, userLong];
-  // console.log(userCoordinates);
-  return userCoordinates;
+
+  createMap(userCoordinates);
 };
-
-// getUserLocation();
-
-// console.log(userCoordinates);
 
 navigator.geolocation.getCurrentPosition(getUserLocation);
 
-function createMap(userLocation) {
-  const map = L.map("map").setView(userCoordinates, 13);
+function createMap(getUserLocation) {
+  const map = L.map("map").setView(getUserLocation, 13);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  }).addTo(map);
+  renderMarkers(map);
 }
 
 //commented out due to duplication
@@ -126,12 +126,6 @@ function createMap(userLocation) {
 //     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 // }).addTo(map);
 
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  attribution:
-    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-}).addTo(map);
-
 async function getRestaurantData() {
   const response = await fetch(
     "https://diet-dine-server.onrender.com/eateries"
@@ -143,14 +137,14 @@ async function getRestaurantData() {
 const restaurantData = await getRestaurantData();
 console.log(restaurantData);
 
-async function renderMarkers() {
+async function renderMarkers(map) {
   const resData = await getRestaurantData();
-  createMapMarkers(resData);
+  createMapMarkers(resData, map);
 }
 
 renderMarkers();
 
-function createMapMarkers(data) {
+function createMapMarkers(data, map) {
   for (let i = 0; i < data.length; i++) {
     let mapMarkers = L.marker([
       data[i].location_lat,

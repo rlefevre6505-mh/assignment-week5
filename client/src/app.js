@@ -76,7 +76,7 @@ filterReq();
 
 //Function to send data submitted in form to database
 
-function handleEaterySubmit(event) {
+searchForm.addEventListener("submit", function handleEaterySubmit(event) {
   event.preventDefault();
   const formDataTemplate = new FormData(form);
   const formValues = Object.fromEntries(formDataTemplate);
@@ -90,7 +90,7 @@ function handleEaterySubmit(event) {
     body: JSON.stringify({ formValues }),
   });
   form.reset();
-}
+});
 
 const map = L.map("map").setView([52.62963764444887, 1.30158956384622], 13);
 

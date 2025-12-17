@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 app.post("/new-eateries", async (req, res) => {
   const newEateries = req.body.formValues;
   console.log(newEateries);
-  const query = db.query(
+  const query = await db.query(
     `INSERT INTO eateries (name, date_visited, location_lat, location_long, address, weblink, gluten_free, dairy_free, vegetarian, vegan, pescatarian, allergy_friendly, wheelchair_accessible) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
     [
       newEateries.name,

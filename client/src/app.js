@@ -1,5 +1,8 @@
 console.log("Hello World");
 
+let markers = []; //"suitcase" for created markers, to be put in when not in use and pulled back when needed with the filter
+let map; //used to be able to use the map later on for the filters/declared out of block scope/value assigned in createMap function
+
 //Modal Button
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -106,7 +109,7 @@ const getUserLocation = (position) => {
 navigator.geolocation.getCurrentPosition(getUserLocation);
 
 function createMap(getUserLocation) {
-  const map = L.map("map").setView(getUserLocation, 13);
+  map = L.map("map").setView(getUserLocation, 13);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:
@@ -156,6 +159,7 @@ function createMapMarkers(data, map) {
     mapMarkers.bindPopup(
       `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`
     );
+    markers.push(mapMarkers);
   }
 }
 
@@ -241,4 +245,13 @@ filterForm.addEventListener("change", async (event) => {
   const list = await result.json(); //reads the response from the server and parses it to JSON, list holds the data it gets from the server
 
   console.log("Filtered Eateries:", list); //displays results in console.log
+  removeMarkers();
+  createMapMarkers(list, map);
 });
+
+function removeMarkers() {
+  for (let i = 0; i < markers.length; i++) {
+    map.removeLayer(markers[i]);
+  }
+  markers = [];
+}

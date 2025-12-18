@@ -46,9 +46,8 @@
       <div id="popin" class="popin">  <a id="popin-close-button">&times;</a>    
         <h2>BEFORE SUBMITTING YOUR RESTAURANT VISIT:</br>Please fill in all applicable details before clicking submit. Failure to complete all details will mean other users cannot see this information.</h2>
         <form id="form">     
-
-          <label for="name_of_restaurant">Name of restaurant</label>
-  <input name="name_of_restaurant" id="name_of_restaurant" maxlength="100" required></textarea>
+          <label for="name">Name of restaurant</label>
+  <input name="name" id="name" maxlength="100" required></textarea>
           <label for="address">Address (not including postcode)</label>
            <textarea name="address" id="address" maxlength="600" ></textarea>
           <div class="postcode">  
@@ -56,12 +55,12 @@
   <input name="postcode" id="postcode" maxlength="9" required></textarea></div>
 </div>
 
-<input name="location_lat" class="hidden" id="lat-box" />
-<input name="location_long" class="hidden" id="lon-box" />
+<input value="" name="location_lat" class="hidden" id="lat-box" />
+<input value="" name="location_long" class="hidden" id="lon-box" />
 
 
-          <label for="website">Website</label>
-  <input type="url" name="website" id="website" maxlength="300" required></input>
+          <label for="weblink">Website</label>
+  <input type="url" name="weblink" id="weblink" maxlength="300" required></input>
 
   <label for="date_visited">When did you visit the eatery?</label>
   <input name="date_visited" id="date-setter" type="date" max="" required> </input>

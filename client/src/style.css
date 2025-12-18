@@ -269,6 +269,11 @@ form {
   font-weight: 200;
 }
 
+.postcode {
+  display: flex;
+  max-width: 70vw;
+}
+
 .accessible {
   display: flex;
 }

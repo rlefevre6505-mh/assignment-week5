@@ -49,6 +49,40 @@ async function DietReq() {
 
 DietReq();
 
+//Function to send data submitted in form to database
+
+searchForm.addEventListener("submit", function handleEaterySubmit(event) {
+  event.preventDefault();
+  //function to find coords from address
+  async function findCoords() {
+    let postcode = document.getElementById("postcode");
+    let postcodeData = postcode.value;
+    const url =
+      "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
+      postcodeData;
+    const res = await fetch(url);
+    const data = await res.json();
+    const location_lat = data[0].lat;
+    const location_lon = data[0].lon;
+    console.log(location_lon);
+    console.log(location_lat);
+  }
+  findCoords();
+
+  const formDataTemplate = new FormData(form);
+  const formValues = Object.fromEntries(formDataTemplate);
+  console.log(formValues);
+
+  fetch("https://diet-dine-server.onrender.com/new-eateries", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ formValues }),
+  });
+  form.reset();
+});
+
 //function to populate requirements into the  dropdown filter
 
 async function filterReq() {
@@ -79,24 +113,6 @@ async function filterReq() {
 }
 
 filterReq();
-
-//Function to send data submitted in form to database
-
-searchForm.addEventListener("submit", function handleEaterySubmit(event) {
-  event.preventDefault();
-  const formDataTemplate = new FormData(form);
-  const formValues = Object.fromEntries(formDataTemplate);
-  console.log(formValues);
-
-  fetch("https://diet-dine-server.onrender.com/new-eateries", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ formValues }),
-  });
-  form.reset();
-});
 
 const getUserLocation = (position) => {
   const userLat = position.coords.latitude;

@@ -49,18 +49,19 @@
 
           <label for="name_of_restaurant">Name of restaurant</label>
   <input name="name_of_restaurant" id="name_of_restaurant" maxlength="100" required></textarea>
-
           <label for="address">Address (not including postcode)</label>
            <textarea name="address" id="address" maxlength="600" ></textarea>
-
           <div class="postcode">  
             <div><label for="postcode">Postcode</label>
-  <input name="postcode" id="postcode" maxlength="8" ></textarea></div>
-
+  <input name="postcode" id="postcode" maxlength="9" required></textarea></div>
 </div>
-<!-- TODO: add verification to webaddress, possibly others -->
+
+<input name="location_lat" class="hidden" id="lat-box" />
+<input name="location_long" class="hidden" id="lon-box" />
+
+
           <label for="website">Website</label>
-  <input type="url" name="website" id="website" maxlength="300" required></textarea>
+  <input type="url" name="website" id="website" maxlength="300" required></input>
 
   <label for="date_visited">When did you visit the eatery?</label>
   <input name="date_visited" id="date-setter" type="date" max="" required> </input>

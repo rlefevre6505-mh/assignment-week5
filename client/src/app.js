@@ -64,14 +64,29 @@ searchForm.addEventListener("submit", function handleEaterySubmit(event) {
     const data = await res.json();
     const location_lat = data[0].lat;
     const location_lon = data[0].lon;
-    console.log(location_lon);
-    console.log(location_lat);
+    const latString = location_lat.toString();
+    const lonString = location_lon.toString();
+    const latBox = document.getElementById("lat-box");
+    const lonBox = document.getElementById("lon-box");
+    latBox.textContent = latString;
+    lonBox.textContent = lonString;
   }
   findCoords();
 
-  const formDataTemplate = new FormData(form);
-  const formValues = Object.fromEntries(formDataTemplate);
-  console.log(formValues);
+  async function completeSubmit() {
+    await findCoords();
+    const latBox = document.getElementById("lat-box");
+    const lonBox = document.getElementById("lon-box");
+
+    console.log(latBox.textContent);
+    console.log(lonBox.textContent);
+
+    const formDataTemplate = new FormData(form);
+    const formValues = Object.fromEntries(formDataTemplate);
+    console.log(formValues);
+  }
+
+  completeSubmit();
 
   fetch("https://diet-dine-server.onrender.com/new-eateries", {
     method: "POST",
@@ -80,6 +95,7 @@ searchForm.addEventListener("submit", function handleEaterySubmit(event) {
     },
     body: JSON.stringify({ formValues }),
   });
+
   form.reset();
 });
 

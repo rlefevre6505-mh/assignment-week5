@@ -166,12 +166,98 @@ async function renderMarkers(map) {
 
 renderMarkers();
 
+const icons = [
+  {
+    iconName: "Gluten free",
+    iconSrc: "/icons/glutenfree.png",
+    alt: "This eatery has gluten-free options",
+  },
+  {
+    iconName: "Dairy free",
+    iconSrc: "/icons/dairyfree.png",
+    alt: "This eatery has dairy-free options",
+  },
+  {
+    iconName: "Vegetarian",
+    iconSrc: "/icons/vegetarian.png",
+    alt: "This eatery has vegetarian options",
+  },
+  {
+    iconName: "Vegan",
+    iconSrc: "/icons/vegan.png",
+    alt: "This eatery has vegan options",
+  },
+  {
+    iconName: "Pescatarian",
+    iconSrc: "/icons/fish.png",
+    alt: "This eatery has pescatarian options",
+  },
+  {
+    iconName: "Allergy friendly",
+    iconSrc: "/icons/allergens.png",
+    alt: "This eatery has detailed allergen information",
+  },
+  {
+    iconName: "Wheelchair accessible",
+    iconSrc: "/icons/wheelchair.png",
+    alt: "This eatery is wheelchair accessible",
+  },
+];
+
 function createMapMarkers(data, map) {
   for (let i = 0; i < data.length; i++) {
     let mapMarkers = L.marker([
       data[i].location_lat,
       data[i].location_long,
     ]).addTo(map);
+    mapMarkers.bindPopup(createPopupElements(restaurantData));
+    function createPopupElements(data) {
+      `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`;
+      for (let i = 0; i < icons.length; i++) {
+        if (data[i].gluten_free === true) {
+          let glutenFreeIcon = document.createElement("img");
+          glutenFreeIcon.className = "diet-icon";
+          glutenFreeIcon.src = icons[0].iconSrc;
+          glutenFreeIcon.alt = icons[0].alt;
+        }
+        if (data[i].dairy_free === true) {
+          let dairyFreeIcon = document.createElement("img");
+          dairyFreeIcon.className = "diet-icon";
+          dairyFreeIcon.src = icons[1].iconSrc;
+          dairyFreeIcon.alt = icons[1].alt;
+        }
+        if (data[i].vegetarian === true) {
+          let vegetarianIcon = document.createElement("img");
+          vegetarianIcon.className = "diet-icon";
+          vegetarianIcon.src = icons[2].iconSrc;
+          vegetarianIcon.alt = icons[2].alt;
+        }
+        if (data[i].vegan === true) {
+          let veganIcon = document.createElement("img");
+          veganIcon.className = "diet-icon";
+          veganIcon.src = icons[3].iconSrc;
+          veganIcon.alt = icons[3].alt;
+          if (data[i].pescatarian === true) {
+            let pescatarianIcon = document.createElement("img");
+            pescatarianIcon.className = "diet-icon";
+            pescatarianIcon.src = icons[4].iconSrc;
+            pescatarianIcon.alt = icons[4].alt;
+          }
+          if (data[i].allergy_friendly === true) {
+            let allergyIcon = document.createElement("img");
+            allergyIcon.className = "diet-icon";
+            allergyIcon.src = icons[5].iconSrc;
+            allergyIcon.alt = icons[5].alt;
+          }
+          if (data[i].wheelchair_accessible === true) {
+            let wheelchairIcon = document.createElement("img");
+            wheelchairIcon.className = "diet-icon";
+            wheelchairIcon.src = icons[6].iconSrc;
+            wheelchairIcon.alt = icons[6].alt;
+          }
+        }
+      }
+    }
     mapMarkers.bindPopup(
       `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`
     );

@@ -258,9 +258,9 @@ function createMapMarkers(data, map) {
         }
       }
     }
-    mapMarkers.bindPopup(
-      `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`
-    );
+    // mapMarkers.bindPopup(
+    //   `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`
+    // );
     markers.push(mapMarkers);
   }
 }

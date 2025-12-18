@@ -1,5 +1,8 @@
 console.log("Hello World");
 
+let markers = []; //"suitcase" for created markers, to be put in when not in use and pulled back when needed with the filter
+let map; //used to be able to use the map later on for the filters/declared out of block scope/value assigned in createMap function
+
 //Modal Button
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -35,6 +38,7 @@ async function DietReq() {
     checkbox.type = "checkbox";
     checkbox.value = choices.dietary_requirements;
     checkbox.name = "dietary_requirements";
+    checkbox.classList.add("tickbox");
 
     //to have checkbox before text
     label.prepend(checkbox);
@@ -44,6 +48,40 @@ async function DietReq() {
 }
 
 DietReq();
+
+//Function to send data submitted in form to database
+
+searchForm.addEventListener("submit", function handleEaterySubmit(event) {
+  event.preventDefault();
+  //function to find coords from address
+  async function findCoords() {
+    let postcode = document.getElementById("postcode");
+    let postcodeData = postcode.value;
+    const url =
+      "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
+      postcodeData;
+    const res = await fetch(url);
+    const data = await res.json();
+    const location_lat = data[0].lat;
+    const location_lon = data[0].lon;
+    console.log(location_lon);
+    console.log(location_lat);
+  }
+  findCoords();
+
+  const formDataTemplate = new FormData(form);
+  const formValues = Object.fromEntries(formDataTemplate);
+  console.log(formValues);
+
+  fetch("https://diet-dine-server.onrender.com/new-eateries", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ formValues }),
+  });
+  form.reset();
+});
 
 //function to populate requirements into the  dropdown filter
 
@@ -61,7 +99,9 @@ async function filterReq() {
 
     const option = document.createElement("option");
     option.type = "option";
-    option.value = choices.dietary_requirements;
+
+    const key = choices.dietary_requirements.toLowerCase().replaceAll(" ", "_"); //small change to value as it pulls them as upper case and without dashes from the supabase table. So set a const that changes them in the loop to match with server setup.
+    option.value = key;
     option.textContent = choices.dietary_requirements;
     // option.name = "dietary_requirements";
 
@@ -74,24 +114,6 @@ async function filterReq() {
 
 filterReq();
 
-//Function to send data submitted in form to database
-
-searchForm.addEventListener("submit", function handleEaterySubmit(event) {
-  event.preventDefault();
-  const formDataTemplate = new FormData(form);
-  const formValues = Object.fromEntries(formDataTemplate);
-  console.log(formValues);
-
-  fetch("https://diet-dine-server.onrender.com/new-eateries", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ formValues }),
-  });
-  form.reset();
-});
-
 const getUserLocation = (position) => {
   const userLat = position.coords.latitude;
   const userLong = position.coords.longitude;
@@ -103,7 +125,7 @@ const getUserLocation = (position) => {
 navigator.geolocation.getCurrentPosition(getUserLocation);
 
 function createMap(getUserLocation) {
-  const map = L.map("map").setView(getUserLocation, 13);
+  map = L.map("map").setView(getUserLocation, 13);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:
@@ -236,6 +258,10 @@ function createMapMarkers(data, map) {
         }
       }
     }
+    mapMarkers.bindPopup(
+      `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`
+    );
+    markers.push(mapMarkers);
   }
 }
 
@@ -267,6 +293,10 @@ const dropdownButton = document.getElementById("dropdown-button");
 const dropdownCloseButton = document.getElementById("dropdown-close-button");
 
 dropdownButton.addEventListener("click", function () {
+  if (document.getElementById("popin").style.width != "0") {
+    document.getElementById("popin").style.width = "0";
+  }
+
   document.getElementById("dropdown").style.width = "90vw";
 });
 
@@ -280,12 +310,26 @@ const popInButton = document.getElementById("popin-button");
 const popInCloseButton = document.getElementById("popin-close-button");
 
 popInButton.addEventListener("click", function () {
+  if (document.getElementById("dropdown").style.width != "0") {
+    document.getElementById("dropdown").style.width = "0";
+  }
+
   document.getElementById("popin").style.width = "90vw";
 });
 
 popInCloseButton.addEventListener("click", function () {
   document.getElementById("popin").style.width = "0";
 });
+
+//code for date fomr validation - cannot add future dates
+const today = new Date();
+let day = today.getDate();
+let nextDay = today.getDate() + 1;
+let month = today.getMonth() + 1;
+let year = today.getFullYear();
+let currentDate = `${year}-${month}-${day}`;
+const dateSetter = document.getElementById("date-setter");
+dateSetter.setAttribute("max", currentDate);
 
 //TO DO: add the filter function to the search form
 
@@ -294,7 +338,7 @@ const filterForm = document.getElementById("filter");
 filterForm.addEventListener("change", async (event) => {
   const selection = event.target.value; //target property, in this case which dietary requirement
 
-  const url = "https://diet-dine-server.onrender.com/dieteateries";
+  let url = "https://diet-dine-server.onrender.com/dieteateries";
   if (selection) {
     url += `?${selection}=true`;
   }
@@ -303,4 +347,13 @@ filterForm.addEventListener("change", async (event) => {
   const list = await result.json(); //reads the response from the server and parses it to JSON, list holds the data it gets from the server
 
   console.log("Filtered Eateries:", list); //displays results in console.log
+  removeMarkers();
+  createMapMarkers(list, map);
 });
+
+function removeMarkers() {
+  for (let i = 0; i < markers.length; i++) {
+    map.removeLayer(markers[i]);
+  }
+  markers = [];
+}

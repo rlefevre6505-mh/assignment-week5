@@ -19,16 +19,19 @@
     <dialog id="myModal">
       <h2>Important Alert</h2>
       <p>Disclaimer: This site provides general dietary information only. We cannot be held responsible for the accuracy of allergy requirements. Please contact the restaurant to receive additional information.</p>
-      <button id="closeModal">OK</button>
+      <button id="closeModal">Acknowledge and</br>access main page</button>
     </dialog>
     <header>
 <img class="logo" src="/images/logo.jpg" alt="Diet Dine logo">
-      <div class="header-items"><h1>Helping you dine</br><i>with confidence</i></h1><nav>
-      <a href="https://diet-dine-client.onrender.com/about">About</a></nav></div>
+      <div class="header-items"><div class="header-text"><h1>Helping you dine</h1><p><i>with confidence</i></p><div><nav>
+
+         <button id="dropdown-button">Filters &</br>Guide</button>
+  <button id="popin-button">Submit a</br>visit</button>
+
+      </nav>
     </header>
     <main>
-
-      <button id="dropdown-button">Filters &</br>Guide</button>
+     
       <div id="dropdown" class="dropdown">  <a id="dropdown-close-button">&times;</a>
         <h2>HOW TO:</br>Use the dropdown menu below to select one dietary option. This will filter out any restaurants on the map that do not meet your requirement. You can view which other requirements each restaurant meets by clicking on them in the map.
         </h2>
@@ -39,7 +42,7 @@
 
       </div>
 
-        <button id="popin-button">Submit a</br>visit</button>
+      
       <div id="popin" class="popin">  <a id="popin-close-button">&times;</a>    
         <h2>BEFORE SUBMITTING YOUR RESTAURANT VISIT:</br>Please fill in all applicable details before clicking submit. Failure to complete all details will mean other users cannot see this information.</h2>
         <form id="form">     
@@ -47,17 +50,24 @@
           <label for="name_of_restaurant">Name of restaurant</label>
   <input name="name_of_restaurant" id="name_of_restaurant" maxlength="100" required></textarea>
 
-          <label for="address">Address</label>
-  <textarea name="address" id="address" maxlength="600" ></textarea>
+          <label for="address">Address (not including postcode)</label>
+           <textarea name="address" id="address" maxlength="600" ></textarea>
 
-<!-- TODO: add verification to webaddress, possibly othersx -->
+          <div class="postcode">  
+            <div><label for="postcode">Postcode</label>
+  <input name="postcode" id="postcode" maxlength="8" ></textarea></div>
+
+</div>
+<!-- TODO: add verification to webaddress, possibly others -->
           <label for="website">Website</label>
-  <input name="website" id="website" maxlength="300" required></textarea>
+  <input type="url" name="website" id="website" maxlength="300" required></textarea>
 
   <label for="date_visited">When did you visit the eatery?</label>
   <input name="date_visited" id="date-setter" type="date" max="" required> </input>
+  <div class="accessible">
   <label for="wheelchair_accessible">Was the location wheelchair accessible?</label>
-  <input type="checkbox" name="wheelchair_accessible" id="accessible" checked />
+  <input type="checkbox" name="wheelchair_accessible" id="accessible" class="tickbox" />
+  </div>
   <label for="choices">Which dietary restrictions are catered to?</label>
   <div id="choices"></div>
   <label for="comments">Any other comments</label>
@@ -69,6 +79,14 @@
 
    <div id="map"></div>
   </main>
-    <footer></footer>
+    <footer>
+<h3>Please refer to these links for additional dietary information:</h3>
+<div class="footer-links">
+<a href="https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/">NHS eat well guide</a>
+<a href="https://www.nhs.uk/conditions/food-allergy/">NHS food allergy information</a>
+<a href="https://www.food.gov.uk/">Restaurant food safety ratings</a>
+</div>
+
+    </footer>
   </body>
 </html>

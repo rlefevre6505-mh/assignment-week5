@@ -65,6 +65,8 @@ Goals we did not achieve were:
 
 - create filtering that allows multiple dietary requirements to be filtered simultaneously. The difficulty with this was creating the correct logic in Javascript and time constraints. This was re-worked into a system in which 1 filter can be selected at a time, with users able to view further information on each restaurant left after filtering.
 
+- use the opentable API to auto-populate restaurnats to the map. This proved difficultin the time allocated.
+
 What went well:
 
 Implementing the map API and adding location markers, with pop-up info boxes was relatively quick and easy initially. Setting up the server and database also went well, as did the basic structure of the page. The page now has clean intuitive UI and clear user journey, with the map taking up most of the screen in any view, drawing users' focus to it, and a minimal selection of buttons and options. The functionality of the page in terms of loading data and displaying on the map, filtering and adding new data to the database which can be immediately displayed on the map have all worked well. This was all supported by good project planning andf cooperation.

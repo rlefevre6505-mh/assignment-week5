@@ -50,9 +50,14 @@
           <label for="name_of_restaurant">Name of restaurant</label>
   <input name="name_of_restaurant" id="name_of_restaurant" maxlength="100" required></textarea>
 
-          <label for="address">Address</label>
-  <textarea name="address" id="address" maxlength="600" ></textarea>
+          <label for="address">Address (not including postcode)</label>
+           <textarea name="address" id="address" maxlength="600" ></textarea>
 
+          <div class="postcode">  
+            <div><label for="postcode">Postcode</label>
+  <input name="postcode" id="postcode" maxlength="8" ></textarea></div>
+
+</div>
 <!-- TODO: add verification to webaddress, possibly others -->
           <label for="website">Website</label>
   <input type="url" name="website" id="website" maxlength="300" required></textarea>

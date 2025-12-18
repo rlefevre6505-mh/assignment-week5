@@ -32,12 +32,15 @@ async function DietReq() {
   list.forEach((choices) => {
     const label = document.createElement("label");
     label.style.display = "block"; //underneath each other - can be changed later if there are issues with CSS
+
     label.textContent = choices.dietary_requirements;
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.value = choices.dietary_requirements;
-    checkbox.name = "dietary_requirements";
+    checkbox.value = true;
+    checkbox.name = choices.dietary_requirements
+      .toLowerCase()
+      .replaceAll(" ", "_");
     checkbox.classList.add("tickbox");
 
     //to have checkbox before text
@@ -51,43 +54,29 @@ DietReq();
 
 //Function to send data submitted in form to database
 
-searchForm.addEventListener("submit", function handleEaterySubmit(event) {
-  event.preventDefault();
-  //function to find coords from address
-  async function findCoords() {
-    let postcode = document.getElementById("postcode");
-    let postcodeData = postcode.value;
-    const url =
-      "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
-      postcodeData;
-    const res = await fetch(url);
-    const data = await res.json();
-    const location_lat = data[0].lat;
-    const location_lon = data[0].lon;
-    const latString = location_lat.toString();
-    const lonString = location_lon.toString();
-    const latBox = document.getElementById("lat-box");
-    const lonBox = document.getElementById("lon-box");
-    latBox.textContent = latString;
-    lonBox.textContent = lonString;
-  }
-  findCoords();
+async function findCoords() {
+  let postcode = document.getElementById("postcode");
+  let postcodeData = postcode.value;
+  const url =
+    "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
+    postcodeData;
+  const res = await fetch(url);
+  const data = await res.json();
+  const location_lat = data[0].lat;
+  const location_lon = data[0].lon;
+  const latString = location_lat.toString();
+  const lonString = location_lon.toString();
+  const latBox = document.getElementById("lat-box");
+  const lonBox = document.getElementById("lon-box");
+  latBox.value = latString;
+  lonBox.value = lonString;
+}
 
-  async function completeSubmit() {
-    await findCoords();
-    const latBox = document.getElementById("lat-box");
-    const lonBox = document.getElementById("lon-box");
-
-    console.log(latBox.textContent);
-    console.log(lonBox.textContent);
-
-    const formDataTemplate = new FormData(form);
-    const formValues = Object.fromEntries(formDataTemplate);
-    console.log(formValues);
-  }
-
-  completeSubmit();
-
+async function completeSubmit() {
+  await findCoords();
+  const formDataTemplate = new FormData(form);
+  const formValues = Object.fromEntries(formDataTemplate);
+  console.log(formValues);
   fetch("https://diet-dine-server.onrender.com/new-eateries", {
     method: "POST",
     headers: {
@@ -95,8 +84,14 @@ searchForm.addEventListener("submit", function handleEaterySubmit(event) {
     },
     body: JSON.stringify({ formValues }),
   });
+}
 
-  form.reset();
+searchForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  findCoords();
+  completeSubmit();
+  // TODO: get form from DOM
+  // form.reset();
 });
 
 //function to populate requirements into the  dropdown filter

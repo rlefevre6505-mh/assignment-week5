@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Tahoma, sans-serif;
 }
 
 /* CSS COLOUR VARIABLES: */
@@ -94,7 +95,7 @@ header {
   border-radius: 5px;
   background-color: var(--secondary-color-light);
   color: var(--primary-color-dark);
-  font-family: Tahoma, sans-serif;
+  /* font-family: Tahoma, sans-serif; */
   font-weight: 800;
   margin: 3px;
   min-width: 100px;
@@ -139,7 +140,7 @@ main {
   background-color: var(--primary-color-medium);
   border: 3px solid var(--primary-color-dark);
   position: relative;
-  font-family: Tahoma, sans-serif;
+  /* font-family: Tahoma, sans-serif; */
 }
 
 #map {
@@ -196,7 +197,7 @@ select {
   margin-top: 15px;
   margin-bottom: 15x;
   color: var(--secondary-color-extralight);
-  font-family: Tahoma, sans-serif;
+  /* font-family: Tahoma, sans-serif; */
   font-size: 1.4rem;
   font-weight: 300;
 }
@@ -208,7 +209,7 @@ select {
 
 option {
   font-size: 1rem;
-  font-family: Tahoma, sans-serif;
+  /* font-family: Tahoma, sans-serif; */
 }
 
 option:active {
@@ -237,7 +238,7 @@ option:active {
   overflow: auto;
   transition: 0.5s;
   border-radius: 3px;
-  font-family: Tahoma, sans-serif;
+  /* font-family: Tahoma, sans-serif; */
   font-size: 1rem;
 }
 
@@ -264,14 +265,14 @@ form {
   max-width: 70vw;
   margin-left: 10px;
   color: var(--neutral-color-white);
-  font-family: Tahoma, sans-serif;
+  /* font-family: Tahoma, sans-serif; */
   font-size: 0.8rem;
   font-weight: 200;
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
 
 .postcode {
   display: flex;
@@ -314,7 +315,7 @@ a {
   margin-top: 15px;
   margin-right: 20px;
   color: var(--secondary-color-extralight);
-  font-family: Tahoma, sans-serif;
+  /* font-family: Tahoma, sans-serif; */
   font-size: 0.8rem;
   font-weight: 300;
 }
@@ -329,7 +330,7 @@ footer {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  font-family: Tahoma, sans-serif;
+  /* font-family: Tahoma, sans-serif; */
 }
 
 footer h3 {

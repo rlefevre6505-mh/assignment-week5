@@ -1,6 +1,7 @@
 Project name: DietDine
-Render link: https://diet-dine-client.onrender.com/
-Repo link: https://diet-dine-server.onrender.com/
+Render client link: https://diet-dine-client.onrender.com/
+Render sever link: https://diet-dine-server.onrender.com/
+GitHub repo link: https://github.com/rlefevre6505-mh/assignment-week5
 
 Team members: Amy Tuck, Richard Lefevre, Ulrike Kunze
 
@@ -43,17 +44,40 @@ The user can submit restaurants with their relevant dietary requirements
 
 # Lighthouse report:
 
+Performance 99%
+Accessibility 100%
+Best Practices 88% requests geolocation on load, lower than ideal image resolution (mostly in the LeafletJS map) browser errors logged to console (all from LeafletJS map)
+SEO 100%
+
+# WAVE
+
+4 errors flagged, all for missing or orphaned labels (2 due to hiddeninouts used to process location data, and 2 possibly due to use of underscores in the name value)
+
 # Reflections:
 
-Please mention the requirements you met and which goals you achieved for this assignment.
+We achieved all requirements for this project and deployed a fully-functioning website on Render,com ahead of the deadline. The main areas of difficulty we encountered were in Javascript logic, making APIs work as intended and manipulating data to achieve desired results.
 
-🎯 Were there any requirements or goals that you were not quite able to achieve?
+Goals we did not achieve were:
 
-🎯 If so, could you please tell us what was it that you found difficult about these tasks?
+- use of colour-coded icons in the map pop-ups to indicate dietary requirements catered to. The main difficulty was time contrains, as this was attempted toward the end of the timeline. This was abandoned, wiht text based infomration in place for now.
 
-What went really well and what could have gone better?
-Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
-Describing errors or bugs you encountered while completing your assignment.
+- implementing extra pages for information about the site and sumitting forms. The difficulty was in understanding the instructions for creating multiple pages in Vite, as these were followee carefully, but the additional page did not deploy successfully to Render.com. Thisd was abandoned in favour of pop-in panels on the main page.
+
+- create filtering that allows multiple dietary requirements to be filtered simultaneously. The difficulty with this was creating the correct logic in Javascript and time constraints. This was re-worked into a system in which 1 filter can be selected at a time, with users able to view further information on each restaurant left after filtering.
+
+What went well:
+
+Implementing the map API and adding location markers, with pop-up info boxes was relatively quick and easy initially. Setting up the server and database also went well, as did the basic structure of the page. The page now has clean intuitive UI and clear user journey, with the map taking up most of the screen in any view, drawing users' focus to it, and a minimal selection of buttons and options. The functionality of the page in terms of loading data and displaying on the map, filtering and adding new data to the database which can be immediately displayed on the map have all worked well. This was all supported by good project planning andf cooperation.
+
+Resources that were used included Leaflets API documentation, numerous MDN and W3 Pages, a few posts on Stack Overflow (for filtering and adding checkboxes and certain attributes to the DOM) and a few Youtube videos (for refining geolocation features).
+
+Bugs encountered included included numerous issues caused by errors in the use of scope, case sensetivity for values of some DOM elements, errors thrown by the Leaflets map API.
 
 References:
-Third-party APIs, CSS resets, icons, images...
+Vite
+Express
+PG
+Cors
+leafletJS
+Openstreetmap
+Copilot (for logo generation)

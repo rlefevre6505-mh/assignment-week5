@@ -90,7 +90,7 @@ searchForm.addEventListener("submit", function (event) {
   event.preventDefault();
   findCoords();
   completeSubmit();
-  form.reset();
+  // form.reset();
 });
 
 //function to populate requirements into the  dropdown filter

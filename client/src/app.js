@@ -182,43 +182,44 @@ async function renderMarkers(map) {
 
 renderMarkers();
 
-const icons = [
-  {
-    iconName: "Gluten free",
-    iconSrc: "/icons/glutenfree.png",
-    alt: "This eatery has gluten-free options",
-  },
-  {
-    iconName: "Dairy free",
-    iconSrc: "/icons/dairyfree.png",
-    alt: "This eatery has dairy-free options",
-  },
-  {
-    iconName: "Vegetarian",
-    iconSrc: "/icons/vegetarian.png",
-    alt: "This eatery has vegetarian options",
-  },
-  {
-    iconName: "Vegan",
-    iconSrc: "/icons/vegan.png",
-    alt: "This eatery has vegan options",
-  },
-  {
-    iconName: "Pescatarian",
-    iconSrc: "/icons/fish.png",
-    alt: "This eatery has pescatarian options",
-  },
-  {
-    iconName: "Allergy friendly",
-    iconSrc: "/icons/allergens.png",
-    alt: "This eatery has detailed allergen information",
-  },
-  {
-    iconName: "Wheelchair accessible",
-    iconSrc: "/icons/wheelchair.png",
-    alt: "This eatery is wheelchair accessible",
-  },
-];
+// commented out as unable to implement icon images to popups
+// const icons = [
+//   {
+//     iconName: "Gluten free",
+//     iconSrc: "/icons/glutenfree.png",
+//     alt: "This eatery has gluten-free options",
+//   },
+//   {
+//     iconName: "Dairy free",
+//     iconSrc: "/icons/dairyfree.png",
+//     alt: "This eatery has dairy-free options",
+//   },
+//   {
+//     iconName: "Vegetarian",
+//     iconSrc: "/icons/vegetarian.png",
+//     alt: "This eatery has vegetarian options",
+//   },
+//   {
+//     iconName: "Vegan",
+//     iconSrc: "/icons/vegan.png",
+//     alt: "This eatery has vegan options",
+//   },
+//   {
+//     iconName: "Pescatarian",
+//     iconSrc: "/icons/fish.png",
+//     alt: "This eatery has pescatarian options",
+//   },
+//   {
+//     iconName: "Allergy friendly",
+//     iconSrc: "/icons/allergens.png",
+//     alt: "This eatery has detailed allergen information",
+//   },
+//   {
+//     iconName: "Wheelchair accessible",
+//     iconSrc: "/icons/wheelchair.png",
+//     alt: "This eatery is wheelchair accessible",
+//   },
+// ];
 
 function createMapMarkers(data, map) {
   for (let i = 0; i < data.length; i++) {
@@ -226,6 +227,7 @@ function createMapMarkers(data, map) {
       data[i].location_lat,
       data[i].location_long,
     ]).addTo(map);
+    // commented out as unable to implement adding icon images based on what dietary requirements each eatery caters for
     // mapMarkers.bindPopup(createPopupElements(restaurantData));
     // function createPopupElements(data) {
     //   `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a>`;

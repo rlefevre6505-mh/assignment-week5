@@ -192,48 +192,78 @@ async function renderMarkers(map) {
 renderMarkers();
 
 // commented out as unable to implement icon images to popups
-// const icons = [
-//   {
-//     iconName: "Gluten free",
-//     iconSrc: "/icons/glutenfree.png",
-//     alt: "This eatery has gluten-free options",
-//   },
-//   {
-//     iconName: "Dairy free",
-//     iconSrc: "/icons/dairyfree.png",
-//     alt: "This eatery has dairy-free options",
-//   },
-//   {
-//     iconName: "Vegetarian",
-//     iconSrc: "/icons/vegetarian.png",
-//     alt: "This eatery has vegetarian options",
-//   },
-//   {
-//     iconName: "Vegan",
-//     iconSrc: "/icons/vegan.png",
-//     alt: "This eatery has vegan options",
-//   },
-//   {
-//     iconName: "Pescatarian",
-//     iconSrc: "/icons/fish.png",
-//     alt: "This eatery has pescatarian options",
-//   },
-//   {
-//     iconName: "Allergy friendly",
-//     iconSrc: "/icons/allergens.png",
-//     alt: "This eatery has detailed allergen information",
-//   },
-//   {
-//     iconName: "Wheelchair accessible",
-//     iconSrc: "/icons/wheelchair.png",
-//     alt: "This eatery is wheelchair accessible",
-//   },
-//   {
-//     iconName: "Hidden disability friendly",
-//     iconSrc: "/icons/sunflower.png",
-//     alt: "This eatery is known by the hidden disability sunflower",
-//   },
-// ];
+
+function checkDietaryNeed(restaurant) {
+  const icons = [
+    {
+      iconName: "Gluten free",
+      iconSrc: "/icons/glutenfree.png",
+      alt: "This eatery has gluten-free options",
+    },
+    {
+      iconName: "Dairy free",
+      iconSrc: "/icons/dairyfree.png",
+      alt: "This eatery has dairy-free options",
+    },
+    {
+      iconName: "Vegetarian",
+      iconSrc: "/icons/vegetarian.png",
+      alt: "This eatery has vegetarian options",
+    },
+    {
+      iconName: "Vegan",
+      iconSrc: "/icons/vegan.png",
+      alt: "This eatery has vegan options",
+    },
+    {
+      iconName: "Pescatarian",
+      iconSrc: "/icons/fish.png",
+      alt: "This eatery has pescatarian options",
+    },
+    {
+      iconName: "Allergy friendly",
+      iconSrc: "/icons/allergens.png",
+      alt: "This eatery has detailed allergen information",
+    },
+    {
+      iconName: "Wheelchair accessible",
+      iconSrc: "/icons/wheelchair.png",
+      alt: "This eatery is wheelchair accessible",
+    },
+    {
+      iconName: "Hidden disability friendly",
+      iconSrc: "/icons/sunflower.png",
+      alt: "This eatery is known by the hidden disability sunflower",
+    },
+  ];
+  let iconsHTML = "";
+  if (restaurant.gluten_free) {
+    iconsHTML += `<img src="${icons[0].iconSrc}" alt="${icons[0].alt}" class="diet-icon" />`;
+  }
+  if (restaurant.dairy_free) {
+    iconsHTML += `<img src="${icons[1].iconSrc}" alt="${icons[1].alt}" class="diet-icon"/>`;
+  }
+  if (restaurant.vegetarian) {
+    iconsHTML += `<img src="${icons[2].iconSrc}" alt="${icons[2].alt}" class="diet-icon"/>`;
+  }
+  if (restaurant.vegan) {
+    iconsHTML += `<img src="${icons[3].iconSrc}" alt="${icons[3].alt}" class="diet-icon"/>`;
+  }
+  if (restaurant.pescatarian) {
+    iconsHTML += `<img src="${icons[4].iconSrc}" alt="${icons[4].alt}" class="diet-icon"/>`;
+  }
+  if (restaurant.allergy_friendly) {
+    iconsHTML += `<img src="${icons[5].iconSrc}" alt="${icons[5].alt}" class="diet-icon"/>`;
+  }
+  if (restaurant.wheelchair_accessible) {
+    iconsHTML += `<img src="${icons[6].iconSrc}" alt="${icons[6].alt}" class="diet-icon"/>`;
+  }
+  if (restaurant.hidden_disability_friendly) {
+    iconsHTML += `<img src="${icons[7].iconSrc}" alt="${icons[7].alt}" class="diet-icon"/>`;
+  }
+  console.log(iconsHTML);
+  return iconsHTML;
+}
 
 function createMapMarkers(data, map) {
   for (let i = 0; i < data.length; i++) {
@@ -291,7 +321,8 @@ function createMapMarkers(data, map) {
     //   }
     // }
     mapMarkers.bindPopup(
-      `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a><br><ul><li>Gluten free: ${data[i].gluten_free}</li><li>Dairy free: ${data[i].dairy_free}</li><li>Vegetarian: ${data[i].vegetarian}</li><li>Vegan: ${data[i].vegan}</li><li>Pescatarian: ${data[i].pescatarian}</li><li>Allergy friendly: ${data[i].allergy_friendly}</li><li>Wheelchair accessible: ${data[i].wheelchair_accessible}</li></ul>`,
+      `${data[i].name} <br>${data[i].address}<br><a href=${data[i].weblink} target="_blank">${data[i].weblink}</a><br><ul><li>Gluten free: ${data[i].gluten_free}</li><li>Dairy free: ${data[i].dairy_free}</li><li>Vegetarian: ${data[i].vegetarian}</li><li>Vegan: ${data[i].vegan}</li><li>Pescatarian: ${data[i].pescatarian}</li><li>Allergy friendly: ${data[i].allergy_friendly}</li><li>Wheelchair accessible: ${data[i].wheelchair_accessible}</li></ul><br>
+      ${checkDietaryNeed(data[i])}`,
     );
     markers.push(mapMarkers);
   }

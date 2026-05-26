@@ -153,6 +153,15 @@ main {
   height: 100%;
 }
 
+.diet-icon {
+  margin: 0.2em;
+  box-sizing: border-box;
+  padding: 0.5em;
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  border-radius: 50%;
+}
 /* STYLING FOR FILTERS POP-IN */
 
 .dropdown {
